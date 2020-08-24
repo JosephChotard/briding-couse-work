@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works</title>
+</head>
+
+<body>
+    {% for post in posts %}
+    <div>
+        <p>Published: {{ post.published_date }}</p>
+        <p><a href="">{{ post.title }}</a></p>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+    {% endfor %}
+</body>
+
+</html>
