@@ -1,0 +1,103 @@
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+:root {
+    --margin: 2$;
+}
+
+@media (min-width: 480px) {
+    :root {
+        --margin: 5%;
+    }
+}
+
+@media (min-width: 768px) {
+    :root {
+        --margin: 10%;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --margin: 25%;
+    }
+}
+
+body {
+    margin: 0;
+}
+
+.header {
+    background: linear-gradient(270deg, #f6b4ff, #ff7676, #ff2929);
+    background-size: 600% 600%;
+    animation: GradientAnim 6s ease infinite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes GradientAnim {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.header h1 a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.posts {
+    margin: 0 var(--margin);
+}
+
+.posts .post {
+    display: block;
+    border-radius: 1em;
+    padding: 0.4em;
+    margin: 1em 0;
+    border: 1px solid #444;
+    text-decoration: none;
+    color: inherit;
+    transition: all 200ms ease-in-out;
+}
+
+.posts .post:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.3);
+}
+
+.posts .post .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+    .posts .post .top {
+        align-items: center;
+        flex-direction: row;
+    }
+}
+
+.posts .post .top .publish-date {
+    font-size: 0.7em;
+    margin: 0;
+}
+
+.posts .post .top .post-title {
+    margin: 0;
+}
