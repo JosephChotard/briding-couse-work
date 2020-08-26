@@ -20,6 +20,12 @@ class NewVisitorTest(unittest.TestCase):
         header_text = self.browser.find_element_by_tag_name('h1').text
         self.assertIn('To-Do', header_text)
 
+        def check_for_row_in_list_table(self, row_text):
+            table = self.browser.find_element_by_id('id_list_table')
+            rows = table.find_elements_by_tag_name('tr')
+            self.assertIn(row_text,
+                          [row.text for row in rows])
+
         # They are directly prompted to enter a to-do item
         inputbox = self.browser.find_element_by_id('id_new_item')
         self.assertEqual(
@@ -28,21 +34,23 @@ class NewVisitorTest(unittest.TestCase):
         )
 
         # Types "Finish the briding coursework" into the text box
-        inputbox.send_keys('Finish the briding coursework')
+        inputbox.send_keys('Finish the bridging coursework')
 
         # On hitting enter the page updates and the lists '1. Finish the bridging coursework'
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
-
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1. Finish the bridging coursework' for row in rows),
-            'New To-Do item doesn\'t appear in table'
-        )
+        check_for_row_in_list_table(self, '1. Finish the bridging coursework')
 
         # There is a text box inviting them to add another item
         # Adds "Submit coursework"
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('Submit the coursework')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        check_for_row_in_list_table(self, '1. Finish the bridging coursework')
+        check_for_row_in_list_table(self, '2. Submit the coursework')
+
         self.fail('Tests aren\'t all implemented')
 
         # The page updates again to show both items
