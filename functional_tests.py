@@ -1,5 +1,7 @@
 from selenium import webdriver
 import unittest
+from selenium.webdriver.common import keys
+import time
 
 
 class NewVisitorTest(unittest.TestCase):
@@ -13,19 +15,34 @@ class NewVisitorTest(unittest.TestCase):
         # Go visit the site
         self.browser.get('http://localhost:8000/lists')
 
-        # Notice that it's Joe's website from the title and a To-Do app
-        self.assertIn('Joe', self.browser.title)
+        # Notice that it's a To-Do app from the title and the headeer
         self.assertIn('To-Do', self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('To-Do', header_text)
 
-        self.fail('Tests aren\'t all implemented')
         # They are directly prompted to enter a to-do item
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        self.assertEqual(
+            inputbox.get_attribute('placeholder'),
+            'Enter a to-do item'
+        )
 
         # Types "Finish the briding coursework" into the text box
+        inputbox.send_keys('Finish the briding coursework')
 
-        # On hitting enteer the page updates and the page lists 1. Finish the bridging coursework
+        # On hitting enter the page updates and the lists '1. Finish the bridging coursework'
+        inputbox.send_keys(keys.ENTER)
+        time.sleep(1)
+
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertTrue(
+            any(row.text == '1. Finish the bridging coursework' for row in rows)
+        )
 
         # There is a text box inviting them to add another item
-        # Adds "Sublit coursework"
+        # Adds "Submit coursework"
+        self.fail('Tests aren\'t all implemented')
 
         # The page updates again to show both items
 
