@@ -30,7 +30,7 @@ class NewVisitorTest(LiveServerTestCase):
 
     def test_can_a_list_start_for_one_user(self):
         # Go visit the site
-        self.browser.get(self.live_server_url+'/lists')
+        self.browser.get(self.live_server_url+'/lists/')
 
         # Notice that it's a To-Do app from the title and the headeer
         self.assertIn('To-Do', self.browser.title)
@@ -65,7 +65,7 @@ class NewVisitorTest(LiveServerTestCase):
     def test_multiple_users_can_start_lists_at_differen_urls(self):
 
         # Bob comes to the website adds an item to list
-        self.browser.get(self.live_server_url + '/lists')
+        self.browser.get(self.live_server_url + '/lists/')
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Do something cool')
         inputbox.send_keys(Keys.ENTER)
@@ -82,7 +82,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser = webdriver.Firefox()
 
         # no sign of Bob's page
-        self.browser.get(self.live_server_url + '/lists')
+        self.browser.get(self.live_server_url + '/lists/')
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Do something cool', page_text)
         self.assertNotIn('Submit the coursework', page_text)
