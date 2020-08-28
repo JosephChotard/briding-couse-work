@@ -9,7 +9,7 @@
             <h3 class="post-title">{{ post.title }}</h3>
             <p class="publish-date">Published: {{ post.published_date }}</p>
         </div>
-        <p class="post-descrip">{{ post.text|linebreaksbr|truncatechars:40 }}</p>
+        <p class="post-descrip">{{ post.text|safe|truncatechars:80 }}</p>
     </a>
     {% endfor %}
 </div>
