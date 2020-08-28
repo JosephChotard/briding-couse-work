@@ -56,6 +56,19 @@ body {
     text-align: center;
 }
 
+.header a.link {
+    text-decoration: none;
+    color: black;
+    padding: 7px;
+    margin: 3px;
+    border-radius: 7px;
+    background-color: white;
+}
+
+.header a.link:hover {
+    background-color: #eee;
+}
+
 h2 {
     text-align: center;
 }

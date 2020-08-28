@@ -1,0 +1,13 @@
+h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (min-width: 724px) {
+    .cv-content {
+        margin: 0 2em;
+    }
+    p:dir(rtl) {
+        margin-top: -2.7em;
+    }
+}

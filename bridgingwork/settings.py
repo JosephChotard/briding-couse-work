@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
     'blog.apps.BlogConfig',
-    'lists.apps.ListsConfig',
     'cv.apps.CvConfig'
 ]
 
@@ -123,3 +124,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+####################################
+##  CKEDITOR CONFIGURATION ##
+####################################
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+        'width': '100%'
+    },
+}
+
+###################################
